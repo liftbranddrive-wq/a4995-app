@@ -8,7 +8,7 @@
    so users get the update next time they open the app.
    ============================================================ */
 
-const CACHE_VERSION = 'a4995-v6';
+const CACHE_VERSION = 'a4995-v7';
 const APP_SHELL = [
     './',
     './index.html',

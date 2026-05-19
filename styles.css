@@ -173,6 +173,19 @@ h1, h2, h3 { margin: 0; line-height: 1.15; letter-spacing: -0.02em; }
 /* ============================================================
    TOP APP BAR (glass)
    ============================================================ */
+/* Yellow safety strip behind iOS status bar — guarantees the very
+   top of the screen is yellow in installed-PWA / standalone mode,
+   regardless of how iOS lays out env(safe-area-inset-top). */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: env(safe-area-inset-top, 0px);
+    background: #FFD42A;
+    z-index: 36;
+    pointer-events: none;
+}
+
 /* Promo / announcement bar — yellow strip at the very top */
 .promo-bar {
     position: fixed;

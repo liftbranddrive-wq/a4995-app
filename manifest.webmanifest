@@ -7,7 +7,7 @@
     "display": "standalone",
     "orientation": "portrait",
     "background_color": "#FFD42A",
-    "theme_color": "#4DBFE8",
+    "theme_color": "#FFD42A",
     "lang": "en-US",
     "dir": "ltr",
     "categories": ["business", "utilities", "lifestyle"],
