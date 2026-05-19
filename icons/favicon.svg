@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+    <defs>
+        <linearGradient id="bgY" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"  stop-color="#FFE85C"/>
+            <stop offset="100%" stop-color="#FFD42A"/>
+        </linearGradient>
+        <radialGradient id="glowY" cx="30%" cy="25%" r="55%">
+            <stop offset="0%"  stop-color="rgba(255,255,255,0.45)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </radialGradient>
+        <filter id="dropY" x="-15%" y="-15%" width="130%" height="130%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.20"/>
+        </filter>
+    </defs>
+
+    <!-- Yellow rounded background -->
+    <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bgY)"/>
+    <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#glowY)"/>
+
+    <!--
+        16-point starburst outline.
+        Center (256, 256). Outer radius = 207, Inner radius = 141 (68% of outer).
+        Generated programmatically: angles = -90deg + i*(180/16)deg.
+    -->
+    <polygon
+        fill="none"
+        stroke="#0a0a0a"
+        stroke-width="9"
+        stroke-linejoin="miter"
+        filter="url(#dropY)"
+        points="256,49 283,128 335,77 320,154 397,98 357,167 437,143 374,194 449,202 380,225 449,256 380,287 449,310 374,318 437,369 357,345 397,414 320,358 335,435 283,384 256,463 229,384 177,435 192,358 115,414 155,345 75,369 138,318 63,310 132,287 63,256 132,225 63,202 138,194 75,143 155,167 115,98 192,154 177,77 229,128"
+    />
+
+    <!-- $49.95 text — sized to fit inside the inner polygon -->
+    <text x="256" y="270"
+          font-family="'Arial Black', 'Helvetica Neue', Impact, sans-serif"
+          font-size="74" font-weight="900"
+          text-anchor="middle"
+          fill="#0a0a0a"
+          letter-spacing="-2">$49.95</text>
+</svg>

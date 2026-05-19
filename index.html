@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=no" />
+    <meta name="theme-color" content="#4DBFE8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="A $49.95" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <title>A $49.95 Any Sewer or Drain</title>
+    <meta name="description" content="Tap to call. $49.95 sewer & drain cleaning. 24/7. NYC, Brooklyn, Queens, Nassau, Suffolk." />
+
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- ============================================================
+         SPLASH SCREEN (shown on app launch, fades out)
+         ============================================================ -->
+    <div id="splash" class="splash">
+        <div class="splash-burst">
+            <img src="icons/a4995-logo.webp" alt="A $49.95 Any Sewer or Drain" class="splash-logo" />
+        </div>
+        <div class="splash-tag">24/7 SERVICE &middot; LICENSED &middot; INSURED</div>
+        <div class="splash-loader"><span></span><span></span><span></span></div>
+    </div>
+
+    <!-- ============================================================
+         APP SHELL
+         ============================================================ -->
+    <div class="app" id="app" aria-hidden="false">
+
+        <!-- Floating decorative blobs (3D depth) -->
+        <div class="blob blob-1" aria-hidden="true"></div>
+        <div class="blob blob-2" aria-hidden="true"></div>
+        <div class="blob blob-3" aria-hidden="true"></div>
+
+        <!-- ----- Top App Bar ----- -->
+        <header class="appbar">
+            <div class="appbar-logo">
+                <img src="icons/a4995-logo.webp" alt="A $49.95" class="appbar-logo-svg" />
+            </div>
+            <button class="appbar-action" id="open-menu" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <circle cx="12" cy="5" r="1.2" fill="currentColor"/>
+                    <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+                    <circle cx="12" cy="19" r="1.2" fill="currentColor"/>
+                </svg>
+            </button>
+        </header>
+
+        <!-- ============================================================
+             SCREENS
+             ============================================================ -->
+        <main class="screens">
+
+            <!-- ============== HOME SCREEN ============== -->
+            <section class="screen screen--active" data-screen="home" id="screen-home">
+                <div class="hero-card">
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        <span>Open Now &middot; 24/7</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Clogged Drain?<br />
+                        <span class="hero-title-y">Tap to Call.<br/>We Fix It.</span>
+                    </h1>
+
+                    <p class="hero-sub">One flat price. Licensed & insured. 15+ years in New York.</p>
+
+                    <!-- 3D primary call button -->
+                    <a href="tel:+12126874995" class="call-btn-3d" data-region="NYC">
+                        <span class="call-btn-3d-glow" aria-hidden="true"></span>
+                        <span class="call-btn-3d-inner">
+                            <span class="call-btn-3d-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            <span class="call-btn-3d-text">
+                                <span class="call-btn-3d-label">CALL NOW</span>
+                                <span class="call-btn-3d-num">(212) 687-4995</span>
+                            </span>
+                        </span>
+                    </a>
+
+                    <div class="quick-badges">
+                        <div class="qbadge"><span class="qbadge-icon">⏱</span>24/7</div>
+                        <div class="qbadge"><span class="qbadge-icon">✓</span>Licensed</div>
+                        <div class="qbadge"><span class="qbadge-icon">$</span>$49.95 Flat</div>
+                    </div>
+                </div>
+
+                <!-- Quick action tiles -->
+                <div class="tile-row">
+                    <button class="tile" data-go="call">
+                        <div class="tile-icon tile-icon--yellow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <span class="tile-label">All Numbers</span>
+                    </button>
+                    <button class="tile" data-go="services">
+                        <div class="tile-icon tile-icon--blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        </div>
+                        <span class="tile-label">Services</span>
+                    </button>
+                    <button class="tile" data-go="about">
+                        <div class="tile-icon tile-icon--green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8z"/></svg>
+                        </div>
+                        <span class="tile-label">About</span>
+                    </button>
+                </div>
+
+                <!-- Trust strip -->
+                <div class="trust-strip">
+                    <div class="trust-stat"><div class="trust-num">15+</div><div class="trust-lbl">Years</div></div>
+                    <div class="trust-div"></div>
+                    <div class="trust-stat"><div class="trust-num">199+</div><div class="trust-lbl">Reviews</div></div>
+                    <div class="trust-div"></div>
+                    <div class="trust-stat"><div class="trust-num">★★★★★</div><div class="trust-lbl">Excellent</div></div>
+                </div>
+
+                <!-- Testimonial card -->
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Honest, fair priced, and never upsell or create work that's not needed."</p>
+                    <p class="testimonial-author">— Allan S., Customer</p>
+                </div>
+            </section>
+
+            <!-- ============== CALL / AREAS SCREEN ============== -->
+            <section class="screen" data-screen="call" id="screen-call">
+                <div class="screen-head">
+                    <h2 class="screen-title">Choose Your Area</h2>
+                    <p class="screen-sub">Tap a card — your phone dialer opens instantly.</p>
+                </div>
+
+                <div class="area-list">
+                    <a href="tel:+12126874995" class="area-card area-card--featured" data-region="NYC">
+                        <div class="area-flag area-flag--yellow">NYC</div>
+                        <div class="area-info">
+                            <div class="area-region">New York City</div>
+                            <div class="area-num">(212) 687-4995</div>
+                        </div>
+                        <div class="area-call-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                    </a>
+
+                    <a href="tel:+17188454995" class="area-card" data-region="Boroughs">
+                        <div class="area-flag">BK<br/>QN</div>
+                        <div class="area-info">
+                            <div class="area-region">Brooklyn / Queens</div>
+                            <div class="area-num">(718) 845-4995</div>
+                        </div>
+                        <div class="area-call-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                    </a>
+
+                    <a href="tel:+15163544995" class="area-card" data-region="Nassau">
+                        <div class="area-flag">NAS</div>
+                        <div class="area-info">
+                            <div class="area-region">Nassau County</div>
+                            <div class="area-num">(516) 354-4995</div>
+                        </div>
+                        <div class="area-call-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                    </a>
+
+                    <a href="tel:+16316984995" class="area-card" data-region="Suffolk">
+                        <div class="area-flag">SUF</div>
+                        <div class="area-info">
+                            <div class="area-region">Suffolk County</div>
+                            <div class="area-num">(631) 698-4995</div>
+                        </div>
+                        <div class="area-call-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                    </a>
+
+                    <a href="tel:+18887294995" class="area-card area-card--toll" data-region="TollFree">
+                        <div class="area-flag area-flag--red">1-888</div>
+                        <div class="area-info">
+                            <div class="area-region">Toll-Free (Anywhere)</div>
+                            <div class="area-num">(888) PAY-4995</div>
+                        </div>
+                        <div class="area-call-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ============== SERVICES SCREEN ============== -->
+            <section class="screen" data-screen="services" id="screen-services">
+                <div class="screen-head">
+                    <h2 class="screen-title">Our Services</h2>
+                    <p class="screen-sub">Any sewer, any drain — one price.</p>
+                </div>
+
+                <div class="svc-grid">
+                    <div class="svc-card" data-svc="sewer-clog">
+                        <div class="svc-icon">🚿</div>
+                        <div class="svc-name">Sewer Clog</div>
+                    </div>
+                    <div class="svc-card" data-svc="storm">
+                        <div class="svc-icon">⛈</div>
+                        <div class="svc-name">Storm Sewer</div>
+                    </div>
+                    <div class="svc-card" data-svc="yard">
+                        <div class="svc-icon">🌳</div>
+                        <div class="svc-name">Yard Drain</div>
+                    </div>
+                    <div class="svc-card" data-svc="backup">
+                        <div class="svc-icon">⚠️</div>
+                        <div class="svc-name">Sewer Backup</div>
+                    </div>
+                    <div class="svc-card" data-svc="leak">
+                        <div class="svc-icon">💧</div>
+                        <div class="svc-name">Drain Leaks</div>
+                    </div>
+                    <div class="svc-card" data-svc="sink">
+                        <div class="svc-icon">🚰</div>
+                        <div class="svc-name">Sink Clog</div>
+                    </div>
+                    <div class="svc-card" data-svc="shower">
+                        <div class="svc-icon">🛁</div>
+                        <div class="svc-name">Shower Block</div>
+                    </div>
+                    <div class="svc-card" data-svc="leader">
+                        <div class="svc-icon">🪣</div>
+                        <div class="svc-name">Leader Drain</div>
+                    </div>
+                    <div class="svc-card" data-svc="toilet">
+                        <div class="svc-icon">🚽</div>
+                        <div class="svc-name">Toilet Backup</div>
+                    </div>
+                </div>
+
+                <div class="info-banner">
+                    <div class="info-banner-icon">💡</div>
+                    <div>
+                        <strong>Pro Tip:</strong> Have your main sewer cleaned once a year to prevent tree-root damage. Ask about our maintenance contract — <em>save 50%</em>.
+                    </div>
+                </div>
+
+                <a href="tel:+12126874995" class="cta-mini" data-region="NYC-from-services">
+                    Get a Quote — Call Now
+                </a>
+            </section>
+
+            <!-- ============== ABOUT SCREEN ============== -->
+            <section class="screen" data-screen="about" id="screen-about">
+                <div class="screen-head">
+                    <h2 class="screen-title">About Us</h2>
+                    <p class="screen-sub">15+ years serving New York.</p>
+                </div>
+
+                <div class="about-hero">
+                    <div class="about-hero-burst">
+                        <img src="icons/a4995-logo.webp" alt="A $49.95" class="about-hero-logo" />
+                    </div>
+                    <p class="about-text">
+                        A $49.95 Any Sewer or Drain is the leading provider of sewer & drain cleaning in
+                        Brooklyn, Queens, Nassau, and Suffolk counties. Our courteous call-center is staffed
+                        by friendly professionals, and a fleet of trucks is ready to roll whenever you need us.
+                        We started the low-price trend — don't be fooled by imitators.
+                    </p>
+                </div>
+
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-item-icon">📍</div>
+                        <div>
+                            <div class="info-item-label">Address</div>
+                            <div class="info-item-value">116-03 Merrick Blvd<br/>Jamaica, NY 11434</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-icon">⏰</div>
+                        <div>
+                            <div class="info-item-label">Hours</div>
+                            <div class="info-item-value">24 Hours / 7 Days — No surcharges nights, weekends, holidays</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-icon">🗺</div>
+                        <div>
+                            <div class="info-item-label">Service Area</div>
+                            <div class="info-item-value">NYC, Brooklyn, Queens, Nassau, Suffolk, Long Island</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-icon">✓</div>
+                        <div>
+                            <div class="info-item-label">Credentials</div>
+                            <div class="info-item-value">Licensed & Insured · 15+ Years · 199+ Reviews</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-actions">
+                    <a href="https://maps.google.com/?q=116-03+Merrick+Blvd+Jamaica+NY+11434" target="_blank" rel="noopener" class="btn-secondary">
+                        Open in Maps
+                    </a>
+                    <a href="https://a4995.com" target="_blank" rel="noopener" class="btn-secondary">
+                        Visit Website
+                    </a>
+                </div>
+
+                <div class="faq-wrap">
+                    <h3 class="faq-h">FAQs</h3>
+                    <details class="faq">
+                        <summary>How do I know if my sewer is clogged?</summary>
+                        <p>Slow drainage, gurgling sounds, foul odors, or water backing up in toilets/sinks.</p>
+                    </details>
+                    <details class="faq">
+                        <summary>Is the $49.95 price for any drain?</summary>
+                        <p>Yes — that's our flat advertised cleaning price. The original low-price promise.</p>
+                    </details>
+                    <details class="faq">
+                        <summary>Do you offer emergency service?</summary>
+                        <p>Absolutely — 24/7, no surcharges for nights, weekends, or holidays.</p>
+                    </details>
+                </div>
+
+                <p class="footer-copy">© <span id="year"></span> A $49.95 Any Sewer or Drain, Inc.</p>
+            </section>
+
+        </main>
+
+        <!-- ============================================================
+             BOTTOM NAVIGATION (glass)
+             ============================================================ -->
+        <nav class="bottom-nav" role="tablist" aria-label="App navigation">
+            <button class="navbtn navbtn--active" data-go="home" role="tab" aria-selected="true">
+                <span class="navbtn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
+                </span>
+                <span class="navbtn-label">Home</span>
+            </button>
+            <button class="navbtn" data-go="call" role="tab" aria-selected="false">
+                <span class="navbtn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+                <span class="navbtn-label">Call</span>
+            </button>
+            <button class="navbtn" data-go="services" role="tab" aria-selected="false">
+                <span class="navbtn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </span>
+                <span class="navbtn-label">Services</span>
+            </button>
+            <button class="navbtn" data-go="about" role="tab" aria-selected="false">
+                <span class="navbtn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                </span>
+                <span class="navbtn-label">About</span>
+            </button>
+        </nav>
+
+        <!-- Install banner (Android/desktop Chromium) -->
+        <div id="install-banner" class="install-banner" hidden>
+            <div class="install-banner-text">
+                <strong>Install this app</strong>
+                <span>One tap to call us, anytime.</span>
+            </div>
+            <button id="install-btn" type="button" class="install-btn">Install</button>
+            <button id="install-dismiss" type="button" class="install-dismiss" aria-label="Dismiss">×</button>
+        </div>
+
+        <!-- iOS install hint -->
+        <div id="ios-install-hint" class="ios-hint" hidden>
+            <div class="ios-hint-inner">
+                <strong>Install on iPhone:</strong>
+                Tap <span class="ios-share">⬆︎</span> Share, then <strong>"Add to Home Screen"</strong>.
+                <button id="ios-hint-close" type="button" class="ios-hint-close" aria-label="Dismiss">×</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>

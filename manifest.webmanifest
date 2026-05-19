@@ -1,0 +1,55 @@
+{
+    "name": "A $49.95 Any Sewer or Drain",
+    "short_name": "A $49.95",
+    "description": "Sewer & drain cleaning for $49.95. NYC, Brooklyn, Queens, Nassau & Suffolk. 24/7 service. Tap to call.",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#FFD42A",
+    "theme_color": "#4DBFE8",
+    "lang": "en-US",
+    "dir": "ltr",
+    "categories": ["business", "utilities", "lifestyle"],
+    "icons": [
+        {
+            "src": "icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icons/icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Call New York City",
+            "short_name": "NYC",
+            "description": "Dial (212) 687-4995",
+            "url": "./index.html?call=nyc",
+            "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Call Toll-Free",
+            "short_name": "Toll-Free",
+            "description": "Dial (888) PAY-4995",
+            "url": "./index.html?call=tollfree",
+            "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+        }
+    ]
+}
