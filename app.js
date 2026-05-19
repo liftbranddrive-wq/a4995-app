@@ -166,41 +166,79 @@
     var DISMISS_KEY = 'a4995-install-dismissed';
     var IOS_DISMISS_KEY = 'a4995-ios-hint-dismissed';
 
-    var deferredPrompt = null;
+    // Detect "is the app currently being run as an installed PWA?"
+    // We check all known signals — different OS/browsers expose different ones.
+    function isStandalone() {
+        if (typeof navigator !== 'undefined' && 'standalone' in navigator && navigator.standalone) return true;
+        if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)            return true;
+        if (window.matchMedia && window.matchMedia('(display-mode: fullscreen)').matches)            return true;
+        if (window.matchMedia && window.matchMedia('(display-mode: minimal-ui)').matches)            return true;
+        // Android TWA / WebAPK referrer is "android-app://"
+        if (document.referrer && document.referrer.indexOf('android-app://') === 0) return true;
+        return false;
+    }
+
     var installBanner = document.getElementById('install-banner');
     var installBtn    = document.getElementById('install-btn');
     var installX      = document.getElementById('install-dismiss');
+    var iosHint       = document.getElementById('ios-install-hint');
+    var iosX          = document.getElementById('ios-hint-close');
 
-    window.addEventListener('beforeinstallprompt', function (e) {
-        e.preventDefault();
-        deferredPrompt = e;
-        if (safeGet(DISMISS_KEY) === '1') return;
-        if (installBanner) installBanner.hidden = false;
-    });
-    if (installBtn) installBtn.addEventListener('click', function () {
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(function () {
-            deferredPrompt = null;
-            if (installBanner) installBanner.hidden = true;
-        });
-    });
-    if (installX) installX.addEventListener('click', function () {
-        if (installBanner) installBanner.hidden = true;
-        safeSet(DISMISS_KEY, '1');
-    });
-    window.addEventListener('appinstalled', function () {
-        if (installBanner) installBanner.hidden = true;
-    });
-
-    // iOS install hint
+    var STANDALONE = isStandalone();
     var isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    var standalone = ('standalone' in navigator && navigator.standalone) ||
-                     (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
-    if (isIos && !standalone && safeGet(IOS_DISMISS_KEY) !== '1') {
-        var iosHint = document.getElementById('ios-install-hint');
-        var iosX    = document.getElementById('ios-hint-close');
-        if (iosHint) setTimeout(function () { iosHint.hidden = false; }, 1800);
+
+    // If we're already inside the installed app, NUKE the install UI entirely so it can never re-appear.
+    if (STANDALONE) {
+        if (installBanner) installBanner.parentNode && installBanner.parentNode.removeChild(installBanner);
+        if (iosHint)       iosHint.parentNode       && iosHint.parentNode.removeChild(iosHint);
+    } else {
+        // Not installed yet → wire up the install UX.
+        var deferredPrompt = null;
+
+        window.addEventListener('beforeinstallprompt', function (e) {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (isStandalone()) return;
+            if (safeGet(DISMISS_KEY) === '1') return;
+            if (installBanner) installBanner.hidden = false;
+        });
+
+        if (installBtn) installBtn.addEventListener('click', function () {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(function () {
+                deferredPrompt = null;
+                if (installBanner) installBanner.hidden = true;
+            });
+        });
+
+        if (installX) installX.addEventListener('click', function () {
+            if (installBanner) installBanner.hidden = true;
+            safeSet(DISMISS_KEY, '1');
+        });
+
+        // Hide immediately on install success, and remember.
+        window.addEventListener('appinstalled', function () {
+            if (installBanner) installBanner.hidden = true;
+            if (iosHint)       iosHint.hidden       = true;
+            safeSet(DISMISS_KEY, '1');
+            safeSet(IOS_DISMISS_KEY, '1');
+        });
+
+        // Re-check standalone status when visibility changes (e.g. user installed in another tab).
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && isStandalone()) {
+                if (installBanner) installBanner.hidden = true;
+                if (iosHint)       iosHint.hidden       = true;
+            }
+        });
+
+        // iOS install hint — only on Safari iOS, not in standalone mode, not dismissed before.
+        if (isIos && safeGet(IOS_DISMISS_KEY) !== '1' && iosHint) {
+            setTimeout(function () {
+                if (!isStandalone()) iosHint.hidden = false;
+            }, 1800);
+        }
         if (iosX) iosX.addEventListener('click', function () {
             if (iosHint) iosHint.hidden = true;
             safeSet(IOS_DISMISS_KEY, '1');
